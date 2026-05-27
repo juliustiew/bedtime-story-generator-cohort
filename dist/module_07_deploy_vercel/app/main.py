@@ -53,6 +53,6 @@ def healthz():
             with conn.cursor() as cur:
                 cur.execute("SELECT 1")
         status["postgres"] = True
-    except psycopg.Error:
-        pass
+    except psycopg.Error as e:
+        print(f"Postgres health check failed: {e}")
     return status
